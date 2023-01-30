@@ -1,0 +1,22 @@
+#debian
+sudo apt-get install apache2 vsftpd wget -y
+#open cmd on base where the certificates present
+scp *.pem shuhari@192.168.80.134:/home/shuhari 
+sudo mkdir /etc/apache2/ssl
+sudo mv *.pem /etc/apache2/ssl/
+sudo chmod 600 /etc/apache2/ssl/*
+sudo a2enmod ssl
+sudo a2ensite default-ssl
+sudo nano /etc/apache2/sites-available/default-ssl.conf
+	ServerName 192.168.80.134:443
+	change cert & key file path
+	save nd exit
+sudo systemctl restart apache2
+#in windows 
+	open notepad run as admin
+	open hosts file => /c/sys32/drivers/etc/
+	add ip website name
+	save it nd check on browser
+browser
+	https://ip of base machine 
+	
